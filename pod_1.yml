@@ -1,0 +1,31 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: custom-app
+  labels:
+    app: custom
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: custom
+ template:
+  metadata:
+   labels:
+    app: custom 
+spec:
+  containers:
+    - name: custom-app
+      image: custom
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: custom-service
+spec:
+  selector:
+    app: custom
+  ports:
+    - port: 80 # Default port for image
